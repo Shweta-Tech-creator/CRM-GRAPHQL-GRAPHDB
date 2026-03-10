@@ -88,10 +88,10 @@ Access the Apollo Sandbox at `http://localhost:4000`.
 - **Stage**: Sales pipeline stages (e.g., Prospecting, Negotiation, Closed Won).
 - **Activity**: Interactions like calls, emails, or meetings.
 
-## 🔍 Example Query
+## 🔍 Example Queries and Mutations
 
-Fetch a sales dashboard summary:
-
+### 1. Sales Dashboard Analytics
+Fetch a summary of your sales pipeline:
 ```graphql
 query GetSalesDashboard {
   salesDashboard {
@@ -101,6 +101,51 @@ query GetSalesDashboard {
   }
 }
 ```
+
+### 2. Create an Account (Org)
+```graphql
+mutation CreateNewAccount {
+  createAccount(name: "Acme Corp", industry: "Technology") {
+    id
+    name
+    industry
+  }
+}
+```
+
+### 3. Fetch Accounts with Contacts
+Get all accounts and their linked personnel:
+```graphql
+query GetAccountsAndContacts {
+  accounts {
+    name
+    industry
+    contacts {
+        name
+        email
+        position
+    }
+  }
+}
+```
+
+### 4. Create a Contact & Link to Account
+```graphql
+mutation CreateContact {
+  createContact(
+    name: "John Doe", 
+    email: "john@acme.com", 
+    accountId: "REPLACE_WITH_ACCOUNT_ID", 
+    position: "CTO"
+  ) {
+    id
+    name
+    email
+  }
+}
+```
+
+> **Note**: Field names might vary slightly between Python (`name`) and Node.js (`firstName`, `lastName`) implementations.
 
 ## 🤝 Contributing
 Feel free to fork this project and submit PRs for any improvements or additional CRM features!
