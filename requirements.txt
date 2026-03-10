@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+strawberry-graphql[fastapi]
+neo4j
+python-dotenv
+python-multipart
